@@ -1,0 +1,746 @@
+{
+  "python": "3.12.14",
+  "virtual_environment": true,
+  "health_status": 200,
+  "scenarios_status": 200,
+  "scenarios": {
+    "balanced": {
+      "status": 200,
+      "algorithms": {
+        "fcfs": {
+          "order": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "starts": [
+            0,
+            4,
+            6,
+            7,
+            9
+          ],
+          "metrics": {
+            "average_response_time": 3,
+            "average_turnaround_time": 5,
+            "average_waiting_time": 3,
+            "busy_time": 10,
+            "completed_packets": 5,
+            "idle_time": 0,
+            "link_utilization": 1,
+            "makespan": 10,
+            "max_waiting_time": 4,
+            "throughput": 0.5
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 4,
+              "completion_count": 2,
+              "max_waiting_time": 4
+            },
+            "2": {
+              "average_waiting_time": 3,
+              "completion_count": 1,
+              "max_waiting_time": 3
+            },
+            "3": {
+              "average_waiting_time": 2,
+              "completion_count": 2,
+              "max_waiting_time": 4
+            }
+          }
+        },
+        "priority": {
+          "order": [
+            "A",
+            "C",
+            "E",
+            "B",
+            "D"
+          ],
+          "starts": [
+            0,
+            4,
+            5,
+            6,
+            8
+          ],
+          "metrics": {
+            "average_response_time": 2.4,
+            "average_turnaround_time": 4.4,
+            "average_waiting_time": 2.4,
+            "busy_time": 10,
+            "completed_packets": 5,
+            "idle_time": 0,
+            "link_utilization": 1,
+            "makespan": 10,
+            "max_waiting_time": 5,
+            "throughput": 0.5
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 1,
+              "completion_count": 2,
+              "max_waiting_time": 2
+            },
+            "2": {
+              "average_waiting_time": 5,
+              "completion_count": 1,
+              "max_waiting_time": 5
+            },
+            "3": {
+              "average_waiting_time": 2.5,
+              "completion_count": 2,
+              "max_waiting_time": 5
+            }
+          }
+        },
+        "aging": {
+          "order": [
+            "A",
+            "C",
+            "E",
+            "B",
+            "D"
+          ],
+          "starts": [
+            0,
+            4,
+            5,
+            6,
+            8
+          ],
+          "metrics": {
+            "average_response_time": 2.4,
+            "average_turnaround_time": 4.4,
+            "average_waiting_time": 2.4,
+            "busy_time": 10,
+            "completed_packets": 5,
+            "idle_time": 0,
+            "link_utilization": 1,
+            "makespan": 10,
+            "max_waiting_time": 5,
+            "throughput": 0.5
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 1,
+              "completion_count": 2,
+              "max_waiting_time": 2
+            },
+            "2": {
+              "average_waiting_time": 5,
+              "completion_count": 1,
+              "max_waiting_time": 5
+            },
+            "3": {
+              "average_waiting_time": 2.5,
+              "completion_count": 2,
+              "max_waiting_time": 5
+            }
+          }
+        }
+      }
+    },
+    "burst": {
+      "status": 200,
+      "algorithms": {
+        "fcfs": {
+          "order": [
+            "A",
+            "B",
+            "U1",
+            "U2",
+            "U3"
+          ],
+          "starts": [
+            0,
+            4,
+            7,
+            8,
+            9
+          ],
+          "metrics": {
+            "average_response_time": 3.6,
+            "average_turnaround_time": 5.6,
+            "average_waiting_time": 3.6,
+            "busy_time": 10,
+            "completed_packets": 5,
+            "idle_time": 0,
+            "link_utilization": 1,
+            "makespan": 10,
+            "max_waiting_time": 5,
+            "throughput": 0.5
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 5,
+              "completion_count": 3,
+              "max_waiting_time": 5
+            },
+            "2": {
+              "average_waiting_time": null,
+              "completion_count": 0,
+              "max_waiting_time": null
+            },
+            "3": {
+              "average_waiting_time": 1.5,
+              "completion_count": 2,
+              "max_waiting_time": 3
+            }
+          }
+        },
+        "priority": {
+          "order": [
+            "A",
+            "U1",
+            "U2",
+            "U3",
+            "B"
+          ],
+          "starts": [
+            0,
+            4,
+            5,
+            6,
+            7
+          ],
+          "metrics": {
+            "average_response_time": 2.4,
+            "average_turnaround_time": 4.4,
+            "average_waiting_time": 2.4,
+            "busy_time": 10,
+            "completed_packets": 5,
+            "idle_time": 0,
+            "link_utilization": 1,
+            "makespan": 10,
+            "max_waiting_time": 6,
+            "throughput": 0.5
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 2,
+              "completion_count": 3,
+              "max_waiting_time": 2
+            },
+            "2": {
+              "average_waiting_time": null,
+              "completion_count": 0,
+              "max_waiting_time": null
+            },
+            "3": {
+              "average_waiting_time": 3,
+              "completion_count": 2,
+              "max_waiting_time": 6
+            }
+          }
+        },
+        "aging": {
+          "order": [
+            "A",
+            "U1",
+            "U2",
+            "U3",
+            "B"
+          ],
+          "starts": [
+            0,
+            4,
+            5,
+            6,
+            7
+          ],
+          "metrics": {
+            "average_response_time": 2.4,
+            "average_turnaround_time": 4.4,
+            "average_waiting_time": 2.4,
+            "busy_time": 10,
+            "completed_packets": 5,
+            "idle_time": 0,
+            "link_utilization": 1,
+            "makespan": 10,
+            "max_waiting_time": 6,
+            "throughput": 0.5
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 2,
+              "completion_count": 3,
+              "max_waiting_time": 2
+            },
+            "2": {
+              "average_waiting_time": null,
+              "completion_count": 0,
+              "max_waiting_time": null
+            },
+            "3": {
+              "average_waiting_time": 3,
+              "completion_count": 2,
+              "max_waiting_time": 6
+            }
+          }
+        }
+      }
+    },
+    "aging-benefit": {
+      "status": 200,
+      "algorithms": {
+        "fcfs": {
+          "order": [
+            "A",
+            "L",
+            "H1",
+            "H2",
+            "H3"
+          ],
+          "starts": [
+            0,
+            10,
+            11,
+            13,
+            15
+          ],
+          "metrics": {
+            "average_response_time": 8.6,
+            "average_turnaround_time": 12,
+            "average_waiting_time": 8.6,
+            "busy_time": 17,
+            "completed_packets": 5,
+            "idle_time": 0,
+            "link_utilization": 1,
+            "makespan": 17,
+            "max_waiting_time": 12,
+            "throughput": 0.29411764705882354
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 8.25,
+              "completion_count": 4,
+              "max_waiting_time": 12
+            },
+            "2": {
+              "average_waiting_time": null,
+              "completion_count": 0,
+              "max_waiting_time": null
+            },
+            "3": {
+              "average_waiting_time": 10,
+              "completion_count": 1,
+              "max_waiting_time": 10
+            }
+          }
+        },
+        "priority": {
+          "order": [
+            "A",
+            "H1",
+            "H2",
+            "H3",
+            "L"
+          ],
+          "starts": [
+            0,
+            10,
+            12,
+            14,
+            16
+          ],
+          "metrics": {
+            "average_response_time": 9.2,
+            "average_turnaround_time": 12.6,
+            "average_waiting_time": 9.2,
+            "busy_time": 17,
+            "completed_packets": 5,
+            "idle_time": 0,
+            "link_utilization": 1,
+            "makespan": 17,
+            "max_waiting_time": 16,
+            "throughput": 0.29411764705882354
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 7.5,
+              "completion_count": 4,
+              "max_waiting_time": 11
+            },
+            "2": {
+              "average_waiting_time": null,
+              "completion_count": 0,
+              "max_waiting_time": null
+            },
+            "3": {
+              "average_waiting_time": 16,
+              "completion_count": 1,
+              "max_waiting_time": 16
+            }
+          }
+        },
+        "aging": {
+          "order": [
+            "A",
+            "L",
+            "H1",
+            "H2",
+            "H3"
+          ],
+          "starts": [
+            0,
+            10,
+            11,
+            13,
+            15
+          ],
+          "metrics": {
+            "average_response_time": 8.6,
+            "average_turnaround_time": 12,
+            "average_waiting_time": 8.6,
+            "busy_time": 17,
+            "completed_packets": 5,
+            "idle_time": 0,
+            "link_utilization": 1,
+            "makespan": 17,
+            "max_waiting_time": 12,
+            "throughput": 0.29411764705882354
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 8.25,
+              "completion_count": 4,
+              "max_waiting_time": 12
+            },
+            "2": {
+              "average_waiting_time": null,
+              "completion_count": 0,
+              "max_waiting_time": null
+            },
+            "3": {
+              "average_waiting_time": 10,
+              "completion_count": 1,
+              "max_waiting_time": 10
+            }
+          }
+        }
+      }
+    },
+    "idle": {
+      "status": 200,
+      "algorithms": {
+        "fcfs": {
+          "order": [
+            "A",
+            "B",
+            "C"
+          ],
+          "starts": [
+            2,
+            6,
+            8
+          ],
+          "metrics": {
+            "average_response_time": 0.6666666666666666,
+            "average_turnaround_time": 2,
+            "average_waiting_time": 0.6666666666666666,
+            "busy_time": 4,
+            "completed_packets": 3,
+            "idle_time": 5,
+            "link_utilization": 0.4444444444444444,
+            "makespan": 9,
+            "max_waiting_time": 2,
+            "throughput": 0.3333333333333333
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 0,
+              "completion_count": 1,
+              "max_waiting_time": 0
+            },
+            "2": {
+              "average_waiting_time": 0,
+              "completion_count": 1,
+              "max_waiting_time": 0
+            },
+            "3": {
+              "average_waiting_time": 2,
+              "completion_count": 1,
+              "max_waiting_time": 2
+            }
+          }
+        },
+        "priority": {
+          "order": [
+            "A",
+            "B",
+            "C"
+          ],
+          "starts": [
+            2,
+            6,
+            8
+          ],
+          "metrics": {
+            "average_response_time": 0.6666666666666666,
+            "average_turnaround_time": 2,
+            "average_waiting_time": 0.6666666666666666,
+            "busy_time": 4,
+            "completed_packets": 3,
+            "idle_time": 5,
+            "link_utilization": 0.4444444444444444,
+            "makespan": 9,
+            "max_waiting_time": 2,
+            "throughput": 0.3333333333333333
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 0,
+              "completion_count": 1,
+              "max_waiting_time": 0
+            },
+            "2": {
+              "average_waiting_time": 0,
+              "completion_count": 1,
+              "max_waiting_time": 0
+            },
+            "3": {
+              "average_waiting_time": 2,
+              "completion_count": 1,
+              "max_waiting_time": 2
+            }
+          }
+        },
+        "aging": {
+          "order": [
+            "A",
+            "B",
+            "C"
+          ],
+          "starts": [
+            2,
+            6,
+            8
+          ],
+          "metrics": {
+            "average_response_time": 0.6666666666666666,
+            "average_turnaround_time": 2,
+            "average_waiting_time": 0.6666666666666666,
+            "busy_time": 4,
+            "completed_packets": 3,
+            "idle_time": 5,
+            "link_utilization": 0.4444444444444444,
+            "makespan": 9,
+            "max_waiting_time": 2,
+            "throughput": 0.3333333333333333
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 0,
+              "completion_count": 1,
+              "max_waiting_time": 0
+            },
+            "2": {
+              "average_waiting_time": 0,
+              "completion_count": 1,
+              "max_waiting_time": 0
+            },
+            "3": {
+              "average_waiting_time": 2,
+              "completion_count": 1,
+              "max_waiting_time": 2
+            }
+          }
+        }
+      }
+    },
+    "ties": {
+      "status": 200,
+      "algorithms": {
+        "fcfs": {
+          "order": [
+            "L",
+            "H1",
+            "H2",
+            "M1",
+            "M2"
+          ],
+          "starts": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "metrics": {
+            "average_response_time": 2.8,
+            "average_turnaround_time": 4,
+            "average_waiting_time": 2.8,
+            "busy_time": 6,
+            "completed_packets": 5,
+            "idle_time": 0,
+            "link_utilization": 1,
+            "makespan": 6,
+            "max_waiting_time": 5,
+            "throughput": 0.8333333333333334
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 2.5,
+              "completion_count": 2,
+              "max_waiting_time": 3
+            },
+            "2": {
+              "average_waiting_time": 4.5,
+              "completion_count": 2,
+              "max_waiting_time": 5
+            },
+            "3": {
+              "average_waiting_time": 0,
+              "completion_count": 1,
+              "max_waiting_time": 0
+            }
+          }
+        },
+        "priority": {
+          "order": [
+            "H1",
+            "H2",
+            "M1",
+            "M2",
+            "L"
+          ],
+          "starts": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "metrics": {
+            "average_response_time": 2,
+            "average_turnaround_time": 3.2,
+            "average_waiting_time": 2,
+            "busy_time": 6,
+            "completed_packets": 5,
+            "idle_time": 0,
+            "link_utilization": 1,
+            "makespan": 6,
+            "max_waiting_time": 4,
+            "throughput": 0.8333333333333334
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 0.5,
+              "completion_count": 2,
+              "max_waiting_time": 1
+            },
+            "2": {
+              "average_waiting_time": 2.5,
+              "completion_count": 2,
+              "max_waiting_time": 3
+            },
+            "3": {
+              "average_waiting_time": 4,
+              "completion_count": 1,
+              "max_waiting_time": 4
+            }
+          }
+        },
+        "aging": {
+          "order": [
+            "H1",
+            "H2",
+            "M1",
+            "M2",
+            "L"
+          ],
+          "starts": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "metrics": {
+            "average_response_time": 2,
+            "average_turnaround_time": 3.2,
+            "average_waiting_time": 2,
+            "busy_time": 6,
+            "completed_packets": 5,
+            "idle_time": 0,
+            "link_utilization": 1,
+            "makespan": 6,
+            "max_waiting_time": 4,
+            "throughput": 0.8333333333333334
+          },
+          "per_priority": {
+            "1": {
+              "average_waiting_time": 0.5,
+              "completion_count": 2,
+              "max_waiting_time": 1
+            },
+            "2": {
+              "average_waiting_time": 2.5,
+              "completion_count": 2,
+              "max_waiting_time": 3
+            },
+            "3": {
+              "average_waiting_time": 4,
+              "completion_count": 1,
+              "max_waiting_time": 4
+            }
+          }
+        }
+      }
+    }
+  },
+  "manual_calculation": {
+    "expected": [
+      [
+        "A",
+        0,
+        4,
+        0,
+        4
+      ],
+      [
+        "C",
+        4,
+        5,
+        2,
+        3
+      ],
+      [
+        "B",
+        5,
+        7,
+        4,
+        6
+      ]
+    ],
+    "observed": [
+      [
+        "A",
+        0,
+        4,
+        0,
+        4
+      ],
+      [
+        "C",
+        4,
+        5,
+        2,
+        3
+      ],
+      [
+        "B",
+        5,
+        7,
+        4,
+        6
+      ]
+    ],
+    "matched": true
+  },
+  "invalid_workload_status": 400
+}
