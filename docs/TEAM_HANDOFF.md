@@ -7,13 +7,16 @@
 
 - Backend: `6af3b3a`; frontend: `b1db69e`. Both checkpoints are preserved. Release audit found no
   implementation differences from these checkpoints. The current branch is `master`.
-- This handoff, README clarification and PROJECT_STATE update are documentation work only.
+- The release handoff was documentation-only; a subsequent authorized hygiene cleanup expanded
+  `.gitignore`. Application code and dependencies remain unchanged. See [security audit](SECURITY_AUDIT.md).
 - The user reports successful manual acceptance of a custom A–E workload, including interval-dependent
   aging order. Exact custom input rows were not saved in the repository; see the custom experiment note.
 - Automated tests and build results below were rerun during this audit. Screenshots are from the
   previously verified frontend milestone, not newly captured custom-workload evidence.
-- No remote is configured and no push was performed. Report writing may proceed from the local source;
-  private source sharing is distinct from a security-clean software release (see audit findings).
+- Origin is now configured to `https://github.com/piyush-bhutra/Priority-Based-Packet-Scheduling.git`
+  under the user's explicit publication authorization. Existing remote branches were absent at fetch.
+  Verify the eventual push by comparing the remote master hash with local HEAD; source sharing is
+  distinct from a security-clean software release (see audit findings).
 
 ## Objective and Computer Networks relevance
 
@@ -141,16 +144,17 @@ the dependency security audit is **not clean**, so do not describe the frozen im
 
 - `.gitignore` successfully excludes `.venv`, frontend node_modules/dist, Python/uv/npm caches,
   Playwright results/reports, TypeScript build info, tool metadata and files named `.env`.
-  It does **not** cover `.env.local`, other `.env.*` variants, private-key files or an environment named
-  `venv`. None are tracked. Use `.venv` and never add credentials. Broader ignore patterns are a
-  recommended follow-up; `.gitignore` was left unchanged to honor the documentation-only freeze.
+  The subsequent hygiene cleanup also excludes `.env.*`, common private-key/credential files and
+  `venv`, while allowing deliberate `.env.example` / `.env.*.example` templates. All 38 ignore-behavior
+  checks pass; no tracked credential files were found. Templates must contain placeholders only.
 - `npm audit` reports **3 vulnerable development packages: 2 critical, 1 moderate** in Vitest,
   tinypool and @vitest/mocker. These are package counts, not three independent advisories.
   [Tinypool worker-options advisory](https://github.com/advisories/GHSA-5gmw-xhrv-c9v3),
   [run-options advisory](https://github.com/advisories/GHSA-85c8-ppgw-ccpr), and
   [mocker file-read advisory](https://github.com/advisories/GHSA-82fw-gwwq-j7x9).
-  The audit proposes a major Vitest upgrade; remediation was not applied or verified because dependencies
-  are frozen. Do not run `npm audit fix --force` as part of report preparation.
+  Registry inspection confirms no compatible security patch for installed Vitest 3.2.7's pinned
+  dependencies. The proposed fix requires a major upgrade and was deliberately deferred; see
+  [exploitability, fixes and future action](SECURITY_AUDIT.md). Do not run `npm audit fix --force`.
 - `npm audit --omit=dev` reports **0 known runtime dependency findings**. That does not certify the Python
   dependency tree or the entire application. Keep local demo/test servers on loopback as configured.
 
@@ -183,7 +187,9 @@ Follow [README](../README.md) for clone/setup, the two terminals and tests. Keep
 checkpoints, write the report against this evidence and isolate any later implementation changes from
 the freeze. Confirm unresolved custom evidence before including its numerical claims.
 
-When the owner chooses to publish later, create an **empty private** GitHub repository without an
+The user has now supplied the GitHub repository and authorized publication. The following is retained
+as first-time setup guidance; do not repeat `remote add` once origin exists. For another new repository,
+create an **empty private** GitHub repository without an
 initial README/license/gitignore. Authenticate with Git Credential Manager/browser login; never put
 tokens in a remote URL. Replace OWNER/REPOSITORY below; these commands were **not executed** by this audit:
 

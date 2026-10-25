@@ -8,14 +8,13 @@ checkpoint `6af3b3a`. It provides packet editing, event playback and comparison 
 
 Install Git, Python 3.12 (backend supports 3.11+), Node.js 22.12+ with npm, and Microsoft Edge for
 browser tests. The verified versions are Python 3.12.14 and Node 22.16.0. Authenticate to GitHub and
-accept the invitation to the private repository before cloning. Replace `OWNER` below after the owner
-creates the repository; it has not been pushed as part of the release audit.
+accept a collaborator invitation first if the repository is private.
 
 From a directory where you want to keep the project:
 
 ```powershell
-git clone https://github.com/OWNER/Packet-Scheduling.git
-Set-Location .\Packet-Scheduling
+git clone https://github.com/piyush-bhutra/Priority-Based-Packet-Scheduling.git
+Set-Location .\Priority-Based-Packet-Scheduling
 py -3.12 -m venv .venv
 & .\.venv\Scripts\python.exe -m pip install -r backend\requirements.lock
 & .\.venv\Scripts\python.exe -m pip check
@@ -29,6 +28,12 @@ changes and global Python package installation. Use `npm.cmd` if PowerShell bloc
 `package-lock.json` and `backend/requirements.lock` must remain tracked; do not update dependencies
 while preparing report evidence. See [TEAM_HANDOFF](docs/TEAM_HANDOFF.md) for the implementation freeze,
 verified experiments and release-audit findings.
+
+Repository hygiene now ignores `.env.*` and common credential/private-key files while allowing
+placeholder-only `.env.example` templates. The npm development toolchain still has three audited
+vulnerable packages (two critical, one moderate); no compatible security-only patch was available.
+Runtime-only npm audit reports zero findings. See [security assessment](docs/SECURITY_AUDIT.md) for
+the local-workflow exposure, deferred major upgrade and verification evidence.
 
 ## Launch the complete laboratory (Windows)
 

@@ -80,10 +80,27 @@ Release-audit findings (2026-10-25): `npm audit` reports three vulnerable develo
 packages (two critical, one moderate) in Vitest/tinypool/@vitest/mocker. Runtime-only
 `npm audit --omit=dev` reports zero findings. No dependency changes were made under the documentation-only
 freeze. This is not a clean dependency-security sign-off; see docs/TEAM_HANDOFF.md for advisories.
-The existing `.gitignore` covers actual project environments/generated output and `.env`, but not
-`.env.*`, private keys or a differently named `venv`. None are tracked; broader rules remain a follow-up.
+The subsequent authorized hygiene cleanup extended `.gitignore` to `.env.*`, common private keys,
+credential files/directories and `venv`, while preserving deliberate `.env.example` / `.env.*.example`
+templates. All 38 ignore-behavior checks passed. No tracked credential/private-key candidates were found.
 The custom A–E/3-ms manual experiment needs its exact input table/output captured before teammates can
 reproduce or cite its numerical results; do not replace it with the predefined balanced workload.
+
+## Minimal security cleanup — current verification status
+
+- Baseline: `5e7ba73`; no application, scheduling, package manifest or lockfile changes.
+- Registry/advisory inspection: Vitest 3.2.7 and tinypool 1.1.1 are the latest compatible major-line
+  releases. Patched transitive versions violate Vitest's declared ranges; major upgrade/overrides were
+  deferred as requested. Fresh full npm audit remains **3 packages: 2 critical, 1 moderate**; runtime-only
+  npm audit remains **0 findings**. Detailed local-workflow exposure and future action: docs/SECURITY_AUDIT.md.
+- Cleanup verification: backend **118 passed**, frontend units **22 passed**, TypeScript/production
+  build passed. The initial browser run and command execution stalled; that environment blocker is
+  now resolved. A fresh browser run passed **all 13 tests** with no application/configuration changes.
+- Publication scan covered 62 source/documentation files, including the pending audit document, and
+  all three existing commits: no known credential/private-key patterns or sensitive-file candidates.
+  Nineteen current ignore checks passed in addition to the original 38 checks; no tracked files are ignored.
+- Hygiene/documentation changes are prepared for a verified checkpoint and the user's authorized
+  GitHub push. Application source and dependency files remain unchanged from `5e7ba73`.
 
 Environment notes: the Windows Python launcher has no registered interpreter. Existing `.venv` derives
 from bundled Python, with packages installed using uv into `.venv` only. Its initial ensurepip bootstrap
@@ -110,11 +127,22 @@ execution for live HTTP verification. Both setup alternatives are documented in 
 ## Remaining work and recommended next step
 
 Rehearse the 3–5 minute demonstration in docs/frontend.md and review the interface with the professor's
-presentation requirements. Prepare the academic report using the official BITE305L template when supplied.
+presentation requirements. The academic report was completed in the shared workspace at
+`D:\CN Project\reports\Priority_Based_Packet_Scheduling_Course_Project_Report.docx` on 2026-10-25:
+27 pages, the official eleven-chapter template, fifteen recent literature entries, tabulated references,
+and six original project figures. All pages were rendered in Word and visually inspected; contents
+numbers match the rendered chapter locations. Fifteen fresh predefined-scenario/policy runs match
+the saved schedule and aggregate-metric evidence. The team must fill the signing date and signatures.
+Contents numbers are static and must be rechecked if later edits change pagination.
+The latest report revision also supplies a matching PDF in the same reports directory. It replaces
+Introduction subsections with five continuous paragraphs on one page and adds targeted page breaks
+for code, workflow and experiment blocks. Both 27-page outputs passed layout and contents checks.
 No further UI/scheduling implementation is required for the requested scope. Complete the custom
-evidence record, review the disclosed development-dependency/ignore findings before a security-clean
-release, and prepare the report from docs/TEAM_HANDOFF.md. Persistence, mobile layouts, deployment
-and additional algorithms remain excluded. No remote or push has been authorized by this audit.
+evidence record, review the disclosed development-dependency findings before a security-clean
+release, and review the completed report alongside docs/TEAM_HANDOFF.md. Persistence, mobile layouts, deployment
+and additional algorithms remain excluded. The user has now explicitly authorized publication of the
+current verified branch to the GitHub repository listed below. The report files referenced above are
+outside this source repository and must be shared separately if teammates need the Word/PDF deliverables.
 
 ## Git checkpoint
 
@@ -122,5 +150,7 @@ Backend checkpoint: `6af3b3a` — `feat: implement verified packet scheduling ba
 Frontend checkpoint message: `feat: add verified desktop packet scheduling laboratory`.
 Frontend checkpoint hash: `b1db69e`.
 Release documentation checkpoint message: `docs: audit release readiness and prepare team handoff`.
-No remote is configured and nothing is pushed. The checkpoint includes this state file and verified
-report; identify the latest checkpoint using `git log -1 --oneline`.
+Origin: `https://github.com/piyush-bhutra/Priority-Based-Packet-Scheduling.git`.
+Fetch/inspection found no existing remote branches before initial publication. The next checkpoint
+contains the verified hygiene/documentation changes. Confirm publication by comparing `git rev-parse HEAD`
+with `git ls-remote origin refs/heads/master`; this file does not claim a push before it is verified.
