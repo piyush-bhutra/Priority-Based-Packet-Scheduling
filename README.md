@@ -1,8 +1,57 @@
 # Priority-Based Packet Scheduling in Computer Networks
 
 BITE305L — Computer Networks, VIT Vellore. A local educational discrete-event simulator of one
-router output link. Backend milestones 1–3 are implemented. Frontend development requires explicit
-Phase 4 authorization.
+router output link. The React/TypeScript laboratory frontend is integrated with the frozen backend
+checkpoint `6af3b3a`. It provides packet editing, event playback and comparison of all three policies.
+
+## Launch the complete laboratory (Windows)
+
+Prerequisites: Node.js 22.12+ (verified with 22.16.0), npm, and the project `.venv` described below.
+Install frontend dependencies once, or after pulling a changed lockfile:
+
+```powershell
+Set-Location 'D:\CN Project\Packet-Scheduling\frontend'
+npm.cmd ci --cache ..\.npm-cache
+```
+
+Terminal 1 — backend, using the isolated virtual environment:
+
+```powershell
+Set-Location 'D:\CN Project\Packet-Scheduling'
+& .\.venv\Scripts\python.exe -m flask --app backend.app:create_app run --host 127.0.0.1 --port 5000
+```
+
+Terminal 2 — frontend:
+
+```powershell
+Set-Location 'D:\CN Project\Packet-Scheduling\frontend'
+npm.cmd run dev
+```
+
+Open **http://127.0.0.1:5173/** in Edge or Chrome. Keep both terminals open; Ctrl+C stops each server.
+Vite proxies `/api` to Flask on port 5000. Fonts are packaged locally, so no external font service is
+needed during the demonstration. On startup, the lab loads balanced traffic and calculates all three
+policies, paused before the first event. Press **Start**. After editing or selecting another scenario,
+press **Run experiment** before replaying or comparing.
+
+Optimize the browser for a desktop/laptop display (verified at 1920×1080 and 1366×768); scroll down for
+the full timeline, metrics and trace. See [frontend architecture and demo guide](docs/frontend.md).
+
+Frontend checks (from `frontend`):
+
+```powershell
+npm.cmd test
+npm.cmd run build
+npm.cmd run test:e2e
+```
+
+The browser suite uses installed Microsoft Edge and the real backend. It starts servers if needed or
+reuses the two already running on ports 5000/5173. Run it only when those ports serve this repository.
+It creates temporary workloads through the API and does not modify predefined scenarios. Latest results:
+**22 frontend unit tests, 13 browser tests and 118 backend tests passed**. `npm run build` includes strict
+TypeScript checking. To inspect the production build locally, keep Flask running and run
+`npm.cmd run preview` (http://127.0.0.1:4173/). The preview also proxies the API; `dist/` alone does not
+contain the Flask backend.
 
 ## Windows setup
 
@@ -94,5 +143,7 @@ This simulates scheduling, not real network traffic or measured QoS. It models o
 link with an unbounded waiting queue, no loss, no routing, no protocol overhead and no real bandwidth.
 Requests support 1–500 packets, three priorities, at most six fractional decimal places and input
 times up to 1,000,000 ms. Empty workloads are explicitly rejected. Throughput is packets/ms;
-utilization is a fraction from 0 to 1, measured from t=0. Aging reduces starvation risk without a general
-bounded-wait guarantee. No frontend, database, cloud service or extra scheduling policy is included.
+utilization is a fraction from 0 to 1, measured from t=0 (displayed as a percentage in the frontend).
+Aging reduces starvation risk without a general bounded-wait guarantee. Workloads/results are held in
+browser memory and reset on refresh. Mobile-specific layouts, database storage, cloud deployment and
+additional scheduling policies are outside scope.
