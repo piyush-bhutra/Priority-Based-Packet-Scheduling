@@ -4,6 +4,32 @@ BITE305L — Computer Networks, VIT Vellore. A local educational discrete-event 
 router output link. The React/TypeScript laboratory frontend is integrated with the frozen backend
 checkpoint `6af3b3a`. It provides packet editing, event playback and comparison of all three policies.
 
+## Teammate setup from a fresh clone
+
+Install Git, Python 3.12 (backend supports 3.11+), Node.js 22.12+ with npm, and Microsoft Edge for
+browser tests. The verified versions are Python 3.12.14 and Node 22.16.0. Authenticate to GitHub and
+accept the invitation to the private repository before cloning. Replace `OWNER` below after the owner
+creates the repository; it has not been pushed as part of the release audit.
+
+From a directory where you want to keep the project:
+
+```powershell
+git clone https://github.com/OWNER/Packet-Scheduling.git
+Set-Location .\Packet-Scheduling
+py -3.12 -m venv .venv
+& .\.venv\Scripts\python.exe -m pip install -r backend\requirements.lock
+& .\.venv\Scripts\python.exe -m pip check
+npm.cmd ci --prefix frontend --cache .npm-cache
+```
+
+Use the local clone's path wherever the launch examples below show `D:\CN Project\Packet-Scheduling`.
+Copy source through Git; recreate `.venv` and `frontend/node_modules` locally. No `.env`, API key,
+database or cloud service is required. Explicit `.venv` commands avoid PowerShell activation-policy
+changes and global Python package installation. Use `npm.cmd` if PowerShell blocks `npm.ps1`.
+`package-lock.json` and `backend/requirements.lock` must remain tracked; do not update dependencies
+while preparing report evidence. See [TEAM_HANDOFF](docs/TEAM_HANDOFF.md) for the implementation freeze,
+verified experiments and release-audit findings.
+
 ## Launch the complete laboratory (Windows)
 
 Prerequisites: Node.js 22.12+ (verified with 22.16.0), npm, and the project `.venv` described below.
@@ -110,7 +136,7 @@ Invoke-RestMethod http://127.0.0.1:5000/api/simulate -Method Post `
 ```powershell
 & .\.venv\Scripts\python.exe -m pytest -q
 & .\.venv\Scripts\python.exe scripts\verify_backend.py
-uv --cache-dir .uv-cache pip check --python .venv\Scripts\python.exe
+& .\.venv\Scripts\python.exe -m pip check
 ```
 
 The live verifier starts a temporary Flask process on a free loopback port, exercises every endpoint,
@@ -118,6 +144,8 @@ checks five scenarios against all three policies, compares a manually calculated
 `docs/verification.json`, and stops its process. It needs permission to connect to local sockets.
 The Codex sandbox required elevated socket access for that check. Ordinary local PowerShell does not
 use that sandbox. Latest verification: **118 passed, 0 failed**, plus successful live HTTP checks.
+For the original workstation's uv-created environment without pip, use
+`uv --cache-dir .uv-cache pip check --python .venv\Scripts\python.exe` instead of the pip-check command.
 
 ## Modules and API
 
@@ -127,6 +155,12 @@ use that sandbox. Latest verification: **118 passed, 0 failed**, plus successful
 - `backend/app.py`: Flask app factory and consistent JSON API/errors.
 - `tests/`: model, engine, metrics, event, scenario and API tests.
 - `scripts/verify_backend.py`: reproducible live demonstration and manual calculation.
+
+If a port is already in use, stop the conflicting process or use another checkout's matching server
+intentionally. Vite uses strict port 5173; its proxy expects Flask at port 5000. The Edge browser suite
+also expects those ports. For an offline error, confirm Flask health with the command above, then Retry.
+If `py -3.12` is not found, install/register Python 3.12 or use your installed Python executable to create
+`.venv`; the documented bundled-runtime fallback is specific to the original workstation.
 
 | Endpoint | Behavior |
 |---|---|

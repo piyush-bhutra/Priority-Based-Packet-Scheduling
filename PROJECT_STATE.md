@@ -7,6 +7,9 @@ Updated: 2026-10-25 (Asia/Calcutta).
 Milestones 1–5: backend MVP and authorized desktop frontend implemented, integrated and verified.
 The backend remains frozen at `6af3b3a`; its code, tests and API contract are unchanged. This repository
 is independent of the parent workspace; parent PRD is unchanged. Local professor demonstration is ready.
+Frontend/manual acceptance is complete per the user's confirmation. Implementation is frozen for
+teammate handoff and academic report preparation; the release audit below records remaining evidence
+and development-tooling findings separately from functional readiness.
 
 ## Implemented functionality
 
@@ -53,6 +56,14 @@ is independent of the parent workspace; parent PRD is unchanged. Local professor
   no changes to backend/, tests/, PRD.md, docs/api.md or docs/demonstrations.md.
 - Frontend independent review found no blocking issues. Static comparison Gantt segments were removed
   from keyboard tab order following its minor accessibility observation.
+- Final release audit reran pytest (**118 passed**), frontend units (**22 passed**), Edge integration
+  (**13 passed**, including clean server startup), explicit `npx.cmd tsc --noEmit` and production build
+  (both exit 0). Source still matches backend `6af3b3a` and frontend `b1db69e` exactly.
+- User-reported manual custom A–E workload acceptance includes expected FCFS/Priority/Aging schedules
+  and aging-interval-dependent order, including interval 3 ms. This is manual user evidence; exact
+  input rows and numerical outputs were not persisted in the repository and have been requested.
+- Tracked/history scan covered 60 files and both implementation commits: no known credential-pattern
+  matches and no tracked virtual environments, node_modules, build output or cache artifacts.
 
 ## Known issues and limitations
 
@@ -64,6 +75,15 @@ use Decimal. Finite scenarios demonstrate aging's effect without proving a gener
 The frontend requires both local servers, uses a minimum desktop layout width of 1200 px and keeps
 edits/results in browser memory only. Large workloads can produce narrow Gantt segments; full timing
 values remain available in the packet comparison table. Edge/Windows is the verified browser target.
+
+Release-audit findings (2026-10-25): `npm audit` reports three vulnerable development dependency
+packages (two critical, one moderate) in Vitest/tinypool/@vitest/mocker. Runtime-only
+`npm audit --omit=dev` reports zero findings. No dependency changes were made under the documentation-only
+freeze. This is not a clean dependency-security sign-off; see docs/TEAM_HANDOFF.md for advisories.
+The existing `.gitignore` covers actual project environments/generated output and `.env`, but not
+`.env.*`, private keys or a differently named `venv`. None are tracked; broader rules remain a follow-up.
+The custom A–E/3-ms manual experiment needs its exact input table/output captured before teammates can
+reproduce or cite its numerical results; do not replace it with the predefined balanced workload.
 
 Environment notes: the Windows Python launcher has no registered interpreter. Existing `.venv` derives
 from bundled Python, with packages installed using uv into `.venv` only. Its initial ensurepip bootstrap
@@ -91,12 +111,16 @@ execution for live HTTP verification. Both setup alternatives are documented in 
 
 Rehearse the 3–5 minute demonstration in docs/frontend.md and review the interface with the professor's
 presentation requirements. Prepare the academic report using the official BITE305L template when supplied.
-No further implementation is required for the requested frontend scope. Persistence, mobile layouts,
-deployment and additional algorithms remain excluded.
+No further UI/scheduling implementation is required for the requested scope. Complete the custom
+evidence record, review the disclosed development-dependency/ignore findings before a security-clean
+release, and prepare the report from docs/TEAM_HANDOFF.md. Persistence, mobile layouts, deployment
+and additional algorithms remain excluded. No remote or push has been authorized by this audit.
 
 ## Git checkpoint
 
 Backend checkpoint: `6af3b3a` — `feat: implement verified packet scheduling backend MVP`.
 Frontend checkpoint message: `feat: add verified desktop packet scheduling laboratory`.
+Frontend checkpoint hash: `b1db69e`.
+Release documentation checkpoint message: `docs: audit release readiness and prepare team handoff`.
 No remote is configured and nothing is pushed. The checkpoint includes this state file and verified
 report; identify the latest checkpoint using `git log -1 --oneline`.
